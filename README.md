@@ -1,8 +1,8 @@
 # 🎮 K24GD03_PROGRAMING_CS
 
-> 💻 *Môn học: Lập trình cơ sở với Unity - Basic Programming with Unity*
-> 🤴Họ và tên sinh viên: Quách Thành Long
-> 🎓MSSV: 124010124034
+💻 *Môn học: Lập trình cơ sở với Unity - Basic Programming with Unity
+🤴Họ và tên sinh viên: Quách Thành Long
+🎓MSSV: 124010124034
 
 ---
 
