@@ -1,0 +1,7 @@
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\obj\Debug\Lab4.csproj.AssemblyReference.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\obj\Debug\Lab4.csproj.CoreCompileInputs.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\bin\Debug\Lab4.exe.config
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\bin\Debug\Lab4.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\bin\Debug\Lab4.pdb
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\obj\Debug\Lab4.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab4\Lab4\obj\Debug\Lab4.pdb
