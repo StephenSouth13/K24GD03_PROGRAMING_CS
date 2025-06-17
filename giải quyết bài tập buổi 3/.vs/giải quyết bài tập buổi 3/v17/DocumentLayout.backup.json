@@ -14,11 +14,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
@@ -26,16 +30,12 @@
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\gi\u1EA3i quy\u1EBFt b\u00E0i t\u1EADp bu\u1ED5i 3\\B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs",
               "RelativeDocumentMoniker": "B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs",
-              "ToolTip": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\gi\u1EA3i quy\u1EBFt b\u00E0i t\u1EADp bu\u1ED5i 3\\B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs*",
-              "RelativeToolTip": "B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs*",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCMAAAAzAAAAAAAAAA==",
+              "ToolTip": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\gi\u1EA3i quy\u1EBFt b\u00E0i t\u1EADp bu\u1ED5i 3\\B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs",
+              "RelativeToolTip": "B\u00C0I_T\u1EACP_BU\u1ED4I3\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-12T04:11:27.229Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }
