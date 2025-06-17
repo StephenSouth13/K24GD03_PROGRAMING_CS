@@ -14,15 +14,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
@@ -30,12 +26,22 @@
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\Lab01\\Lab01\\Program.cs",
               "RelativeDocumentMoniker": "Lab01\\Program.cs",
+<<<<<<< Updated upstream
+              "ToolTip": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\Lab01\\Lab01\\Program.cs*",
+              "RelativeToolTip": "Lab01\\Program.cs*",
+              "ViewState": "AgIAAAMAAAAAAAAAAADwvxEAAAAdAAAAAAAAAA==",
+=======
               "ToolTip": "D:\\VTC Academy\\Game Programing Language\\K24GD03_PROGRAMING_CS\\Lab01\\Lab01\\Program.cs",
               "RelativeToolTip": "Lab01\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAATAAAAAAAAAA==",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T02:33:23.785Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }

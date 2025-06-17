@@ -1,0 +1,7 @@
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\bin\Debug\Bai_Tap_Lab4.exe.config
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\bin\Debug\Bai_Tap_Lab4.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\bin\Debug\Bai_Tap_Lab4.pdb
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\obj\Debug\Bai_Tap_Lab4.csproj.AssemblyReference.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\obj\Debug\Bai_Tap_Lab4.csproj.CoreCompileInputs.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\obj\Debug\Bai_Tap_Lab4.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Bai_Tap_Lab4\Bai_Tap_Lab4\obj\Debug\Bai_Tap_Lab4.pdb

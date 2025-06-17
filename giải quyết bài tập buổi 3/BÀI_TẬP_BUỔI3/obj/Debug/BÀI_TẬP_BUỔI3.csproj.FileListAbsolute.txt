@@ -1,0 +1,7 @@
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\bin\Debug\BÀI_TẬP_BUỔI3.exe.config
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\bin\Debug\BÀI_TẬP_BUỔI3.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\bin\Debug\BÀI_TẬP_BUỔI3.pdb
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\obj\Debug\BÀI_TẬP_BUỔI3.csproj.AssemblyReference.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\obj\Debug\BÀI_TẬP_BUỔI3.csproj.CoreCompileInputs.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\obj\Debug\BÀI_TẬP_BUỔI3.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\giải quyết bài tập buổi 3\BÀI_TẬP_BUỔI3\obj\Debug\BÀI_TẬP_BUỔI3.pdb
