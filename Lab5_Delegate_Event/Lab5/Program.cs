@@ -14,6 +14,8 @@ namespace Lab5
             Delegate_KhaiBao.KhaiBaoRunDemo();
             Anonymos.An_Danh();
             LogSystem.LoggerRun();
+            Events.Run();
+            Swap.ShowTwo();
             Console.ReadKey();
         }
     }
@@ -178,7 +180,47 @@ namespace Lab5
         {
             Logger logger = LogSystem.LogToFile;
             logger += LogSystem.LogToConsole;
-            logger();//Gọi cả hau hàm
+            logger();//Gọi cả hai hàm
         }
     }
+    // Hàm Event 
+    public delegate void Display();
+
+    class Events
+    {
+        public event Display Print; //Event phải public nếu gọi từ ngoài
+
+        public void Show()
+        {
+            Console.Write("This is an event");
+            Print?.Invoke();
+        }
+        public static void Run()
+        {
+            Events objEvents = new Events();
+
+            //Đăng ký sự kiện bằng phương thức ẩn danh
+            objEvents.Print += () => Console.WriteLine("Sự kiện đã được xử lý !");
+            //Gọi hàm trigger sự kiện
+            objEvents.Show();
+        }
+    }
+    class Swap
+    {
+        delegate float HaiSo(float m, float n);
+
+
+        public static void ShowTwo()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine("Chạy 2 biến m và n");
+            float m = 5;
+            float n = 10;
+            float tam = m;
+            m = n;
+            n = tam;
+            Console.WriteLine("Kết quả của biến là m = {0},n = {1} ", m,n);
+        }
+    }
+
 }
