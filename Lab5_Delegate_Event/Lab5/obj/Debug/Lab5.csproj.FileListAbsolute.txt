@@ -1,0 +1,7 @@
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\bin\Debug\Lab5.exe.config
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\bin\Debug\Lab5.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\bin\Debug\Lab5.pdb
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\obj\Debug\Lab5.csproj.AssemblyReference.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\obj\Debug\Lab5.csproj.CoreCompileInputs.cache
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\obj\Debug\Lab5.exe
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\Lab5_Delegate_Event\Lab5\obj\Debug\Lab5.pdb
