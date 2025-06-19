@@ -8,7 +8,7 @@
 > 💻 *Môn học: Lập trình cơ sở với Unity - Basic Programming with Unity*
 > <br>🤴Họ và tên sinh viên: Quách Thành Long*
 > <br>🎓MSSV: 124010124034*
->>>>>>> dev_lab_new_popupstyle
+>Branch dev_lab_new_popupstyle
 
 ---
 
@@ -25,10 +25,14 @@
 - 🇻🇳 Làm quen với **Unity** – công cụ phát triển game phổ biến.
 - 🇻🇳 Nắm vững kiến thức lập trình cơ bản.
 - 🇻🇳 Sử dụng **Git/GitHub** để quản lý và theo dõi mã nguồn.
+- Lập trình với Firebase.
+- Delegate + Anonymos.
 
 - 🇬🇧 Get familiar with **Unity** – a widely used game development engine.
 - 🇬🇧 Understand fundamental programming concepts.
 - 🇬🇧 Use **Git/GitHub** for version control and project management.
+- Working với Firebase.
+- Delegate + Anonymos.
 
 ---
 
