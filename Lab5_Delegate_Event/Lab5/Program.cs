@@ -16,6 +16,7 @@ namespace Lab5
             LogSystem.LoggerRun();
             Events.Run();
             Swap.ShowTwo();
+            Swap.FuncAndActionDemo();
             Console.ReadKey();
         }
     }
@@ -95,7 +96,7 @@ namespace Lab5
             float nhan = tinhnhan?.Invoke(10, 10) ?? 0;
             Console.WriteLine("Nhân = " + nhan);
 
-            
+
         }
 
         // === VD04: CallBack ===
@@ -164,7 +165,7 @@ namespace Lab5
             }
             ;
 
-            
+
 
         }
     }
@@ -175,8 +176,8 @@ namespace Lab5
     {
         public static void LogToFile() => Console.WriteLine("\n Ghi vào file");
         public static void LogToConsole() => Console.WriteLine("Hiển thị lên Console");
-    
-    public static void LoggerRun()
+
+        public static void LoggerRun()
         {
             Logger logger = LogSystem.LogToFile;
             logger += LogSystem.LogToConsole;
@@ -205,6 +206,7 @@ namespace Lab5
             objEvents.Show();
         }
     }
+    //Chạy Swap
     class Swap
     {
         delegate float HaiSo(float m, float n);
@@ -219,8 +221,55 @@ namespace Lab5
             float tam = m;
             m = n;
             n = tam;
-            Console.WriteLine("Kết quả của biến là m = {0},n = {1} ", m,n);
+            Console.WriteLine("Kết quả của biến là m = {0},n = {1} ", m, n);
         }
-    }
+       
+    
+   public static void FuncAndActionDemo()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
 
+            // Func: 2 tham số double, trả về double
+            Func<double, double, double> myFunc01 = delegate (double m, double n)
+            {
+                return m * n;
+            };
+            Console.WriteLine("Func Tích: " + myFunc01?.Invoke(5, 10));
+
+            // Func: int + double => double
+            Func<int, double, double> myFunc02 = (a, b) => a * b;
+            Console.WriteLine("Func Thương: " + myFunc02?.Invoke(5, 2.5));
+
+            // Action1: anonymous
+            Action<string> myAction01 = delegate (string s)
+            {
+                Console.WriteLine("Anonymous Hello: " + s);
+            };
+            myAction01("C# Developer");
+
+            // Action2: lambda
+            Action<int> myAction02 = (int num) =>
+            {
+                Console.WriteLine("Hello World + " + num);
+            };
+            myAction02(100);
+
+            // Action3: lambda hai tham số
+            Action<int, int> myAction03 = (a, b) =>
+            {
+                Console.WriteLine($"Tích {a} x {b} = {a * b}");
+            };
+            myAction03(3, 7);
+
+            // Action4: lambda một tham số
+            Action<string> myAction04 = message =>
+            {
+                Console.WriteLine("Tin nhắn: " + message);
+            };
+            myAction04("Chào bạn !");
+        }
+
+
+
+    } 
 }
