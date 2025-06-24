@@ -180,7 +180,7 @@ namespace Lab6
                     .PutAsync(sv);
             }
 
-            Console.WriteLine("✅ Đã lưu Top 5 sinh viên vào Firebase tại node 'TopStudent'");
+            Console.WriteLine(" Đã lưu Top 5 sinh viên vào Firebase tại node 'TopStudent'");
         }
 
 
