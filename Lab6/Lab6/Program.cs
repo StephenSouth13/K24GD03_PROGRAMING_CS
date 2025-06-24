@@ -82,7 +82,7 @@ namespace Lab6
                 var sv = new Student
                 {
                     HoTen = $"SinhVien_{i}",
-                    Lop = $"Lop_{random.Next(1, 7)}",
+                    Lop = $"Lop_{random.Next(1, 5)}",
                     MSSV = random.Next(1000, 9999),
                     Diem = random.Next(1, 11),
                     CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss")
@@ -150,21 +150,39 @@ namespace Lab6
             Console.WriteLine("Đã xoá sinh viên.");
         }
 
-        // Hiển thị Top 5 sinh viên có điểm cao nhất
+        // Hiển thị Top 5 sinh viên có điểm cao nhất và lưu vào Firebase (TopStudent)
         public static async Task ShowTop5Student()
         {
+            // Bước 1: Lấy toàn bộ sinh viên từ Firebase
             var all = await firebase.Child("Student").OnceAsync<Student>();
+
+            // Bước 2: Chọn Top 5 sinh viên theo điểm giảm dần
             var top = all.Select(s => s.Object)
                          .OrderByDescending(sv => sv.Diem)
                          .Take(5)
                          .ToList();
 
+            // Bước 3: Hiển thị ra màn hình
             Console.WriteLine("\nTop 5 sinh viên điểm cao nhất:");
             foreach (var sv in top)
             {
                 Console.WriteLine($"{sv.HoTen} | MSSV: {sv.MSSV} | Lớp: {sv.Lop} | Điểm: {sv.Diem}");
             }
+
+            // Bước 4: Ghi vào Firebase node "TopStudent"
+            await firebase.Child("TopStudent").DeleteAsync(); // Xóa dữ liệu cũ nếu có
+
+            foreach (var sv in top)
+            {
+                await firebase
+                    .Child("TopStudent")
+                    .Child(sv.MSSV.ToString()) // Dùng MSSV làm key con
+                    .PutAsync(sv);
+            }
+
+            Console.WriteLine("✅ Đã lưu Top 5 sinh viên vào Firebase tại node 'TopStudent'");
         }
+
 
         // Thêm sinh viên thủ công
         public static async Task AddStudentManually()
