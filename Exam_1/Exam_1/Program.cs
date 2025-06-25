@@ -44,7 +44,7 @@ namespace Exam_1
                 Console.WriteLine("5. Hiển thị Top 5 Gold cao nhất");
                 Console.WriteLine("6. Ghi Top 5 Score cao nhất vào node TopScore");
                 Console.WriteLine("7. Thêm thủ công 1 người chơi");
-                Console.WriteLine("8.Thêm 1 người chơi");
+                Console.WriteLine("8. Thêm 1 người chơi");
                 Console.WriteLine("0. Thoát");
 
                 var choice = Console.ReadLine();
@@ -240,7 +240,7 @@ namespace Exam_1
                 .Child(player.PlayerID)
                 .PutAsync(player);
 
-            Console.WriteLine($"✅ Đã thêm thủ công người chơi: {player.PlayerID} - {player.Name}");
+            Console.WriteLine($"Đã thêm thủ công người chơi: {player.PlayerID} - {player.Name}");
         }
 
     }
