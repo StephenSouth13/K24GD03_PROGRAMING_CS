@@ -43,6 +43,8 @@ namespace Exam_1
                 Console.WriteLine("4. Xoá Player theo PlayerID");
                 Console.WriteLine("5. Hiển thị Top 5 Gold cao nhất");
                 Console.WriteLine("6. Ghi Top 5 Score cao nhất vào node TopScore");
+                Console.WriteLine("7. Thêm thủ công 1 người chơi");
+                Console.WriteLine("8.Thêm 1 người chơi");
                 Console.WriteLine("0. Thoát");
 
                 var choice = Console.ReadLine();
@@ -54,6 +56,7 @@ namespace Exam_1
                     case "4": await DeletePlayer(); break;
                     case "5": await ShowTopGold(); break;
                     case "6": await SaveTopScore(); break;
+                    case "7": await AddManualPlayer();break;
                     case "0": return;
                     default: Console.WriteLine("Lựa chọn không hợp lệ."); break;
                 }
@@ -78,16 +81,30 @@ namespace Exam_1
                     .Child("Players")
                     .Child(player.PlayerID)
                     .PutAsync(player);
+                    
 
-                Console.WriteLine($"✔ Đã thêm: {player.PlayerID} - {player.Name}");
+                Console.WriteLine($"Đã thêm: {player.PlayerID} - {player.Name}");
+                var testData = new
+                {
+                    Message = "Hello Firebase!",
+                    Timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss")
+                };
+
+                await firebase.Child("Time AddPlayer").PutAsync(testData);
+                Console.WriteLine("Dữ liệu đã được thêm vào Firebase thành công!");
+
+
             }
+    
+
+
         }
 
         // 2. Hiển thị toàn bộ danh sách player
         public static async Task ShowPlayers()
         {
             var all = await firebase.Child("Players").OnceAsync<Player>();
-            Console.WriteLine("\n📄 Danh sách toàn bộ Player:");
+            Console.WriteLine("\n Danh sách toàn bộ Player:");
             foreach (var item in all)
             {
                 var p = item.Object;
@@ -195,6 +212,37 @@ namespace Exam_1
 
             Console.WriteLine(" Đã lưu Top 5 Score vào node TopScore.");
         }
+        // Thêm một người chơi thủ công
+        public static async Task AddManualPlayer()
+        {
+            Console.Write("Nhập PlayerID: ");
+            var id = Console.ReadLine();
+
+            Console.Write("Nhập tên người chơi: ");
+            var name = Console.ReadLine();
+
+            Console.Write("Nhập số Gold: ");
+            int gold = int.TryParse(Console.ReadLine(), out int g) ? g : 0;
+
+            Console.Write("Nhập số Score: ");
+            int score = int.TryParse(Console.ReadLine(), out int s) ? s : 0;
+
+            var player = new Player
+            {
+                PlayerID = id,
+                Name = name,
+                Gold = gold,
+                Score = score
+            };
+
+            await firebase
+                .Child("Players")
+                .Child(player.PlayerID)
+                .PutAsync(player);
+
+            Console.WriteLine($"✅ Đã thêm thủ công người chơi: {player.PlayerID} - {player.Name}");
+        }
+
     }
 }
 
