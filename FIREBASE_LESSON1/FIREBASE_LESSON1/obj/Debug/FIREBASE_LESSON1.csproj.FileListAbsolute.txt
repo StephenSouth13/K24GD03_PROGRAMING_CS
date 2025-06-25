@@ -58,3 +58,4 @@ D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\FIREBASE_LESSON1\F
 D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\FIREBASE_LESSON1\FIREBASE_LESSON1\bin\Debug\System.Reactive.Interfaces.xml
 D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\FIREBASE_LESSON1\FIREBASE_LESSON1\bin\Debug\System.Reactive.Linq.xml
 D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\FIREBASE_LESSON1\FIREBASE_LESSON1\bin\Debug\System.Reactive.PlatformServices.xml
+D:\VTC Academy\Game Programing Language\K24GD03_PROGRAMING_CS\FIREBASE_LESSON1\FIREBASE_LESSON1\obj\Debug\FIREBASE_LESSON1.exe.config
