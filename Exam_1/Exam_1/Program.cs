@@ -44,7 +44,7 @@ namespace Exam_1
                 Console.WriteLine("5. Hiển thị Top 5 Gold cao nhất");
                 Console.WriteLine("6. Ghi Top 5 Score cao nhất vào node TopScore");
                 Console.WriteLine("7. Thêm thủ công 1 người chơi");
-                Console.WriteLine("8. Thêm 1 người chơi");
+                Console.WriteLine("8. Ghi Top 5 Gold cao nhất vào node TopGold");
                 Console.WriteLine("0. Thoát");
 
                 var choice = Console.ReadLine();
@@ -57,6 +57,7 @@ namespace Exam_1
                     case "5": await ShowTopGold(); break;
                     case "6": await SaveTopScore(); break;
                     case "7": await AddManualPlayer();break;
+                    case "8": await SaveTopGold(); break;
                     case "0": return;
                     default: Console.WriteLine("Lựa chọn không hợp lệ."); break;
                 }
@@ -242,7 +243,37 @@ namespace Exam_1
 
             Console.WriteLine($"Đã thêm thủ công người chơi: {player.PlayerID} - {player.Name}");
         }
+        // 3 - Lưu Top 5 Gold vào node TopGold (có chỉ số thứ hạng)
+        public static async Task SaveTopGold()
+        {
+            var all = await firebase.Child("Players").OnceAsync<Player>();
+            var topGold = all
+                .Select(p => p.Object)
+                .OrderByDescending(p => p.Gold)
+                .Take(5)
+                .ToList();
 
+            await firebase.Child("topGold").DeleteAsync();
+            int index = 1;
+            foreach (var p in topGold)
+            {
+                await firebase
+                    .Child("TopGold")
+                    .Child(index.ToString())
+                    .PutAsync(new
+                    {
+                        Rank = index,
+                        p.PlayerID,
+                        p.Name,
+                        p.Gold,
+                        p.Score
+                    });
+
+                index++;
+            }
+
+            Console.WriteLine(" Đã lưu Top 5 Gold vào node TopGold.");
+        }
     }
 }
 
