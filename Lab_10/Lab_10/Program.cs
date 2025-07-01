@@ -27,12 +27,14 @@ namespace Lab_10
             await DisplayPeopleWithCompanies(); // Hiển thị danh sách người với công ty
             CheckPeopleData(); // Kiểm tra dữ liệu người
             FindYoungestAndOldestDevs(); // Tìm kiếm developer trẻ nhất và lớn tuổi nhất
+            QueryOlderDevelopers(); // Truy vấn các developer lớn tuổi
+            FilterYoungestAndSmartestDev(); // Lọc ra developer trẻ nhất và học giỏi nhất
+            CountAlternatingDevs(); // Đếm xen kẽ 1 developer già và 1 developer trẻ
         }
 
         // Phương thức khởi tạo danh sách khách hàng và lọc theo thành phố
         public static async Task StartList()
         {
-            // Khởi tạo danh sách khách hàng
             List<Customer> list = new List<Customer>
             {
                 new Customer { CustomerID = "LoveYourSelf", ContactName = "Hasagi", City = "HCM" },
@@ -40,19 +42,16 @@ namespace Lab_10
                 new Customer { CustomerID = "CellphoneS", ContactName = "Hasagi", City = "HCM" }
             };
 
-            // Lọc danh sách khách hàng theo thành phố "HN"
             var query = from c in list
-                        where c.City == "HN" // Chỉ lấy khách hàng ở thành phố "HN"
+                        where c.City == "HN"
                         select new { c.City, c.ContactName };
 
-            // Kiểm tra nếu không có khách hàng nào và thông báo
             if (!query.Any())
             {
                 Console.WriteLine("No customers found in HN.");
             }
             else
             {
-                // In ra tên liên hệ và thành phố
                 foreach (var c in query)
                 {
                     Console.WriteLine($"{c.ContactName} - {c.City}");
@@ -64,12 +63,12 @@ namespace Lab_10
         public static async Task IncreaseNum()
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-            var sortedNumbers = list.OrderBy(n => n); // Sắp xếp theo thứ tự tăng dần
+            var sortedNumbers = list.OrderBy(n => n);
 
             Console.WriteLine("Sorted Numbers (Ascending):");
             foreach (int num in sortedNumbers)
             {
-                Console.WriteLine(num); // In từng số đã sắp xếp
+                Console.WriteLine(num);
             }
         }
 
@@ -77,12 +76,12 @@ namespace Lab_10
         public static async Task DecreaseNum()
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-            var sortedDecreaseNumbers = list.OrderByDescending(n => n); // Sắp xếp theo thứ tự giảm dần
+            var sortedDecreaseNumbers = list.OrderByDescending(n => n);
 
             Console.WriteLine("Sorted Numbers (Descending):");
             foreach (int num in sortedDecreaseNumbers)
             {
-                Console.WriteLine(num); // In từng số đã sắp xếp
+                Console.WriteLine(num);
             }
         }
 
@@ -90,12 +89,12 @@ namespace Lab_10
         public static async Task Reverse()
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-            var revertList = list.AsEnumerable().Reverse(); // Đảo ngược danh sách
+            var revertList = list.AsEnumerable().Reverse();
 
             Console.WriteLine("Reversed Numbers:");
             foreach (int num in revertList)
             {
-                Console.WriteLine(num); // In từng số đã đảo ngược
+                Console.WriteLine(num);
             }
         }
 
@@ -103,14 +102,14 @@ namespace Lab_10
         public static async Task Group()
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-            var groupedNumbers = list.GroupBy(n => n % 2 == 0 ? "Even" : "Odd"); // Nhóm theo chẵn và lẻ
+            var groupedNumbers = list.GroupBy(n => n % 2 == 0 ? "Even" : "Odd");
 
             foreach (var group in groupedNumbers)
             {
-                Console.WriteLine($"Group: {group.Key}"); // In ra tên nhóm
+                Console.WriteLine($"Group: {group.Key}");
                 foreach (var num in group)
                 {
-                    Console.WriteLine(num); // In từng số trong nhóm
+                    Console.WriteLine(num);
                 }
             }
         }
@@ -118,33 +117,31 @@ namespace Lab_10
         // Phương thức hiển thị danh sách công ty
         public static async Task DisplayCompanies()
         {
-            var companies = GenerateCompanies(); // Tạo danh sách công ty
+            var companies = GenerateCompanies();
             Console.WriteLine("List of Companies:");
             foreach (var company in companies)
             {
-                Console.WriteLine($"ID: {company.Id}, Name: {company.Name}"); // In ra ID và tên công ty
+                Console.WriteLine($"ID: {company.Id}, Name: {company.Name}");
             }
         }
 
         // Phương thức hiển thị người cùng với công ty mà họ làm việc
         public static async Task DisplayPeopleWithCompanies()
         {
-            var people = GenerateListOfPeople(); // Tạo danh sách người
-            var companies = GenerateCompanies(); // Tạo danh sách công ty
+            var people = GenerateListOfPeople();
+            var companies = GenerateCompanies();
 
-            // Phép nối (Join) giữa danh sách người và công ty (Method Syntax)
             var peopleWithCompanies = people.Join(companies,
-                person => person.CompanyId, // Khóa nối từ danh sách người
-                company => company.Id, // Khóa nối từ danh sách công ty
-                (person, company) => new { person.FirstName, CompanyName = company.Name }); // Kết quả nối
+                person => person.CompanyId,
+                company => company.Id,
+                (person, company) => new { person.FirstName, CompanyName = company.Name });
 
             Console.WriteLine("People with Companies (Method Syntax):");
             foreach (var item in peopleWithCompanies)
             {
-                Console.WriteLine($"{item.FirstName} works at {item.CompanyName}"); // In ra tên người và công ty
+                Console.WriteLine($"{item.FirstName} works at {item.CompanyName}");
             }
 
-            // Phép nối (Join) giữa danh sách người và công ty (Query Syntax)
             var peopleWithCompaniesQuery = from p in people
                                            join c in companies on p.CompanyId equals c.Id
                                            select new { p.FirstName, CompanyName = c.Name };
@@ -152,7 +149,7 @@ namespace Lab_10
             Console.WriteLine("People with Companies (Query Syntax):");
             foreach (var item in peopleWithCompaniesQuery)
             {
-                Console.WriteLine($"{item.FirstName} works at {item.CompanyName}"); // In ra tên người và công ty
+                Console.WriteLine($"{item.FirstName} works at {item.CompanyName}");
             }
         }
 
@@ -164,6 +161,7 @@ namespace Lab_10
             public string Occupation { get; set; } // Nghề nghiệp
             public int Age { get; set; } // Tuổi
             public int CompanyId { get; set; } // ID công ty
+            public double Score { get; set; } // Điểm số
         }
 
         // Phương thức tạo danh sách người
@@ -171,11 +169,11 @@ namespace Lab_10
         {
             var people = new List<Person>
             {
-                new Person { FirstName = "Eric", LastName = "Fleming", Occupation = "Dev", Age = 24, CompanyId = 1 },
-                new Person { FirstName = "Steve", LastName = "Smith", Occupation = "Manager", Age = 40, CompanyId = 1 },
-                new Person { FirstName = "Brendan", LastName = "Enrick", Occupation = "Dev", Age = 30, CompanyId = 2 },
-                new Person { FirstName = "Jane", LastName = "Doe", Occupation = "Dev", Age = 35, CompanyId = 1 },
-                new Person { FirstName = "Samantha", LastName = "Jones", Occupation = "Dev", Age = 24, CompanyId = 2 }
+                new Person { FirstName = "Eric", LastName = "Fleming", Occupation = "Dev", Age = 24, CompanyId = 1, Score = 85 },
+                new Person { FirstName = "Steve", LastName = "Smith", Occupation = "Manager", Age = 40, CompanyId = 1, Score = 90 },
+                new Person { FirstName = "Brendan", LastName = "Enrick", Occupation = "Dev", Age = 30, CompanyId = 2, Score = 78 },
+                new Person { FirstName = "Jane", LastName = "Doe", Occupation = "Dev", Age = 35, CompanyId = 1, Score = 95 },
+                new Person { FirstName = "Samantha", LastName = "Jones", Occupation = "Dev", Age = 24, CompanyId = 2, Score = 88 }
             };
             return people; // Trả về danh sách người
         }
@@ -198,44 +196,37 @@ namespace Lab_10
             }; // Trả về danh sách công ty
         }
 
-        // Ví dụ sử dụng LINQ để kiểm tra dữ liệu trong danh sách người
+        // Kiểm tra dữ liệu người
         public static void CheckPeopleData()
         {
-            var people = GenerateListOfPeople(); // Tạo danh sách người
+            var people = GenerateListOfPeople();
 
-            // Kiểm tra xem có người nào không
             bool thereArePeople = people.Any();
             Console.WriteLine($"Are there any people? {thereArePeople}");
 
-            // Kiểm tra xem có developer nào trên 30 tuổi không
             bool anyDevOver30 = people.Any(x => x.Occupation == "Dev" && x.Age > 30);
             Console.WriteLine($"Is there any developer over 30? {anyDevOver30}");
         }
 
-        // Phương thức tìm developer trẻ nhất và lớn tuổi nhất
+        // Tìm developer trẻ nhất và lớn tuổi nhất
         public static void FindYoungestAndOldestDevs()
         {
-            var people = GenerateListOfPeople(); // Tạo danh sách người
+            var people = GenerateListOfPeople();
 
-            // Lọc danh sách developer
             var developers = people.Where(p => p.Occupation == "Dev").ToList();
 
-            // Kiểm tra nếu không có developer nào
             if (!developers.Any())
             {
                 Console.WriteLine("No developers found.");
                 return;
             }
 
-            // Tìm developer trẻ nhất
             var youngestDev = developers.OrderBy(p => p.Age).FirstOrDefault();
             Console.WriteLine($"Youngest Developer: {youngestDev.FirstName} {youngestDev.LastName}, Age: {youngestDev.Age}");
 
-            // Tìm developer lớn tuổi nhất
             var oldestDev = developers.OrderByDescending(p => p.Age).FirstOrDefault();
             Console.WriteLine($"Oldest Developer: {oldestDev.FirstName} {oldestDev.LastName}, Age: {oldestDev.Age}");
 
-            // Tìm 3 developer trẻ nhất
             var threeYoungestDevs = developers.OrderBy(p => p.Age).Take(3);
             Console.WriteLine("Three Youngest Developers:");
             foreach (var dev in threeYoungestDevs)
@@ -243,10 +234,61 @@ namespace Lab_10
                 Console.WriteLine($"{dev.FirstName} {dev.LastName}, Age: {dev.Age}");
             }
 
-            // Tìm 5 developer lớn tuổi nhất
-            var fiveOldestDevs = developers.OrderByDescending(p => p.Age).Take(5);
-            Console.WriteLine("Five Oldest Developers:");
-            foreach (var dev in fiveOldestDevs)
+            var twoOldestDevs = developers.OrderByDescending(p => p.Age).Take(2);
+            Console.WriteLine("Two Oldest Developers:");
+            foreach (var dev in twoOldestDevs)
+            {
+                Console.WriteLine($"{dev.FirstName} {dev.LastName}, Age: {dev.Age}");
+            }
+        }
+
+        // Lọc ra developer trẻ nhất và học giỏi nhất
+        public static void FilterYoungestAndSmartestDev()
+        {
+            var people = GenerateListOfPeople();
+
+            var smartestDev = people.Where(p => p.Occupation == "Dev")
+                                     .OrderByDescending(p => p.Score)
+                                     .FirstOrDefault();
+
+            Console.WriteLine($"Smartest Developer: {smartestDev.FirstName} {smartestDev.LastName}, Score: {smartestDev.Score}");
+
+            var youngestDev = people.Where(p => p.Occupation == "Dev")
+                                     .OrderBy(p => p.Age)
+                                     .FirstOrDefault();
+
+            Console.WriteLine($"Youngest Developer: {youngestDev.FirstName} {youngestDev.LastName}, Age: {youngestDev.Age}");
+        }
+
+        // Đếm xen kẽ 1 developer già và 1 developer trẻ
+        public static void CountAlternatingDevs()
+        {
+            var people = GenerateListOfPeople();
+            var developers = people.Where(p => p.Occupation == "Dev").ToList();
+
+            var sortedDevelopers = developers.OrderBy(p => p.Age).ToList();
+            var oldestDevelopers = developers.OrderByDescending(p => p.Age).ToList();
+
+            Console.WriteLine("Alternating Developers (Old and Young):");
+            int maxCount = Math.Min(sortedDevelopers.Count, oldestDevelopers.Count);
+            for (int i = 0; i < maxCount; i++)
+            {
+                Console.WriteLine($"Old Developer: {oldestDevelopers[i].FirstName} {oldestDevelopers[i].LastName}, Age: {oldestDevelopers[i].Age}");
+                Console.WriteLine($"Young Developer: {sortedDevelopers[i].FirstName} {sortedDevelopers[i].LastName}, Age: {sortedDevelopers[i].Age}");
+            }
+        }
+
+        // Phương thức tìm các developer lớn tuổi
+        public static void QueryOlderDevelopers()
+        {
+            var people = GenerateListOfPeople();
+
+            var olderDevelopers = from p in people
+                                  where p.Occupation == "Dev" && p.Age > 30
+                                  select p;
+
+            Console.WriteLine("Older Developers (Age > 30):");
+            foreach (var dev in olderDevelopers)
             {
                 Console.WriteLine($"{dev.FirstName} {dev.LastName}, Age: {dev.Age}");
             }
