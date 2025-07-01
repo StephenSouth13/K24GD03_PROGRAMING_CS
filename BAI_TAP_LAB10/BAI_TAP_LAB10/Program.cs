@@ -24,7 +24,7 @@ namespace BAI_TAP_LAB10
             // 1. Tìm các số dương từ 1 đến 12
             Console.OutputEncoding = Encoding.UTF8;
             var positiveNumbers = numbers.Where(n => n > 0 && n <= 12).ToList();
-            Console.WriteLine("Positive numbers from 1 to 12:");
+            Console.WriteLine("Viết chương trình tạo số từ 1 đến 12");
             foreach (var num in positiveNumbers)
             {
                 Console.WriteLine(num);
