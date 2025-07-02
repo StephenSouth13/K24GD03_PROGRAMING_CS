@@ -20,6 +20,7 @@ namespace Thuc_Hanh_Lab_11
         public bool IsActive { get; set; }
         public int VipLevel { get; set; }
         public string Region { get; set;}
+        public string City { get; set; }
         public DateTime LastLogin { get; set; }
 
     }
