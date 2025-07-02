@@ -48,7 +48,7 @@ namespace Thuc_Hanh_Lab_11
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             var players = await GetPlayersAsync();
-            Console.WriteLine("\n Câu 1:Phân tích Tài chính Người chơi");
+            Console.WriteLine("\nCâu 1:Phân tích Tài chính Người chơi");
             // Bài 1:LINQ Query Syntax
             var bai1_query =
                 from p in players
@@ -65,11 +65,11 @@ namespace Thuc_Hanh_Lab_11
             await PushToFirebase("quiz_bai1_richPlayers", bai1_method);
 
             //Bài 2: Thống kê và Tìm kiếm Người chơi VIP
-             Console.WriteLine("\n Tổng số lượng người chơi VIP");
+             Console.WriteLine("\nCâu 2.1 :Tổng số lượng người chơi VIP");
              var totalVip = players.Count(p =>p.VipLevel > 0);
             Console.WriteLine("Tổng số người chơi VIP " + totalVip);
             //Số lượng người chơi VIP trong khu vực
-            Console.WriteLine("Tổng số người chơi theo khu vực");
+            Console.WriteLine("\nCâu 2.2:Tổng số người chơi theo khu vực");
 
             var bai2_group =
                 from p in players
@@ -83,7 +83,7 @@ namespace Thuc_Hanh_Lab_11
             }
             
             // Người chơi VIP đăng nhập
-            Console.WriteLine("\n Người chơi VIP mới đăng nhập");
+            Console.WriteLine("\nCâu 2.3:Người chơi VIP mới đăng nhập");
             var now = new DateTime(2025,06,30);
             var bai2_recent =
                 players.Where(p => p.VipLevel > 0 && (now - p.LastLogin).TotalDays <= 2)
@@ -94,7 +94,7 @@ namespace Thuc_Hanh_Lab_11
                 Console.WriteLine($"{p.Name} | VIP: {p.VipLevel} | Last Login: {p.LastLogin}");
             }
             await PushToFirebase("quiz_bai2_recentVipPlayers", bai2_recent);
-            Console.WriteLine("Kết thúc chương trình");
+            Console.WriteLine("Hoàn tất chương trình thực hành 11 thầy Hiếu môn Game Program Language");
         }
         
     }
