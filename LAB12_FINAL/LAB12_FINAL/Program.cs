@@ -19,13 +19,13 @@ namespace LAB12_FINAL
         public int VipLevel { get; set; }
     }
 
-    internal class Program
+    class Program
     {
-        static readonly string firebaseURL = "https://raw.githubusercontent.com/NTH-VTC/OnlineDemoC-/refs/heads/main/lab12_players.json";
-        static readonly FirebaseClient firebase = new FirebaseClient(firebaseURL);
+        static readonly string firebaseUrl = "https://lab11-a162f-default-rtdb.asia-southeast1.firebasedatabase.app/";
+        static readonly FirebaseClient firebase = new FirebaseClient(firebaseUrl);
         static readonly DateTime fixedNow = new DateTime(2025, 06, 30, 0, 0, 0, DateTimeKind.Utc);
 
-        static async Task<List<Player>> LoadPlayerAsync()
+        static async Task<List<Player>> LoadPlayersAsync()
         {
             var url = "https://raw.githubusercontent.com/NTH-VTC/OnlineDemoC-/refs/heads/main/lab12_players.json";
             using (var client = new HttpClient())
@@ -34,6 +34,7 @@ namespace LAB12_FINAL
                 return JsonConvert.DeserializeObject<List<Player>>(json);
             }
         }
+
         static async Task PushToFirebase<T>(string path, IEnumerable<T> data)
         {
             var dict = new Dictionary<string, T>();
@@ -44,28 +45,34 @@ namespace LAB12_FINAL
                 i++;
             }
             await firebase.Child(path).PutAsync(dict);
-        }  
-        static async Task Bai1_1_IsActivePlayer(List<Player>players)
+        }
+
+        static async Task Bai1_1_InactivePlayers(List<Player> players)
         {
-            Console.WriteLine("\nBài 1.1.Danh sách người chơi không hoạt động gần đây.");
+            Console.WriteLine("\n--- 1.1. DANH SÁCH NGƯỜI CHƠI KHÔNG HOẠT ĐỘNG GẦN ĐÂY ---");
+            Console.WriteLine("Tên Người Chơi    | Hoạt Động  | Đăng Nhập Cuối");
 
             var result = players.Where(p => p.IsActive == false || (fixedNow - p.LastLogin).TotalDays > 5)
                 .Select(p => new
                 {
                     p.Name,
                     p.IsActive,
-                    p.LastLogin,
+                    LastLogin = p.LastLogin.ToString("u")
                 }).ToList();
+
             foreach (var p in result)
             {
-                Console.WriteLine(string.Format("{0,-18} | {1,-10} | {2}", p.Name, p.IsActive, p.LastLogin));
-
+                Console.WriteLine(string.Format("{0,-18}| {1,-10}| {2}", p.Name, p.IsActive, p.LastLogin));
             }
+
             await PushToFirebase("final_exam_bai1_inactive_players", result);
         }
-        static async Task Bai1_2_LowLevelPlayers(List<Player>players)
+
+        static async Task Bai1_2_LowLevelPlayers(List<Player> players)
         {
-            Console.WriteLine("\nBài 1.2.Danh sách những người chơi cấp thấp");
+            Console.WriteLine("\n--- 1.2. DANH SÁCH NGƯỜI CHƠI CẤP THẤP ---");
+            Console.WriteLine("Tên Người Chơi    | Level   | Gold Hiện Tại");
+
             var result = players.Where(p => p.Level < 10)
                 .Select(p => new
                 {
@@ -73,18 +80,21 @@ namespace LAB12_FINAL
                     p.Level,
                     CurrentGold = p.Gold
                 }).ToList();
-            foreach(var p in result)
-            {
-                Console.WriteLine(string.Format("{0,-18}| {1,-8}| {2:NO}",p.Name, p.Level,p.CurrentGold));
-            }
-            await PushToFirebase("final_exam_bai1_low_level_players", result);  
-        }
-        //Bài 2
-        static async Task Bai2_Top3_Vip_Players(List<Player> players)
-        {
-            Console.WriteLine("\nBài 2.1.Top 3 người chơi VIP có Level cao nhất và Gold được thưởng dự kiến");
 
-            var top3 = players.Where(P => P.VipLevel > 0)
+            foreach (var p in result)
+            {
+                Console.WriteLine(string.Format("{0,-18}| {1,-8}| {2:N0}", p.Name, p.Level, p.CurrentGold));
+            }
+
+            await PushToFirebase("final_exam_bai1_low_level_players", result);
+        }
+
+        static async Task Bai2_Top3VipAward(List<Player> players)
+        {
+            Console.WriteLine("\n--- 2.1. TOP 3 NGƯỜI CHƠI VIP CẤP ĐỘ CAO NHẤT VÀ GOLD THƯỞNG DỰ KIẾN ---\n");
+            Console.WriteLine("Hạng | Tên Người Chơi       | VIP Level | Level | Gold Hiện Tại  | Gold Thưởng");
+
+            var top3 = players.Where(p => p.VipLevel > 0)
                 .OrderByDescending(p => p.Level)
                 .Take(3)
                 .Select((p, index) => new
@@ -92,27 +102,32 @@ namespace LAB12_FINAL
                     Rank = index + 1,
                     p.Name,
                     p.VipLevel,
+                    p.Level,
                     CurrentGold = p.Gold,
                     AwardedGoldAmount = (index == 0 ? 2000 : index == 1 ? 1500 : 1000)
                 }).ToList();
+
             foreach (var p in top3)
             {
-                Console.WriteLine(string.Format("{0,4} | {1,-20} | {2,9} | {3,5} | {4,14:NO} | {5,12:N0}",
-                    p.Rank, p.Name, p.VipLevel, p.CurrentGold, p.AwardedGoldAmount));
+                Console.WriteLine(string.Format("{0,4} | {1,-20} | {2,9} | {3,5} | {4,14:N0} | {5,12:N0}",
+
+
+                p.Rank, p.Name, p.VipLevel, p.Level, p.CurrentGold, p.AwardedGoldAmount));
             }
+
             await PushToFirebase("final_exam_bai2_top3_vip_awards", top3);
         }
+
         static async Task Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            var players = await LoadPlayerAsync();
+            var players = await LoadPlayersAsync();
 
-            await Bai1_1_IsActivePlayer(players);
+            await Bai1_1_InactivePlayers(players);
             await Bai1_2_LowLevelPlayers(players);
-            await Bai2_Top3_Vip_Players(players);
+            await Bai2_Top3VipAward(players);
 
-            Console.WriteLine("Kết thúc môn lập trình Game Programming Language");
-
+            Console.WriteLine("\n>>> Kết thúc chương trình bài kiểm tra cuối kỳ môn Game Program Language - giảng viên Nguyễn Trọng Hiếu <<<");
         }
     }
 }

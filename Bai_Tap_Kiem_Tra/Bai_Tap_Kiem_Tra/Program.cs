@@ -92,7 +92,8 @@ namespace Bai_Tap_Kiem_Tra
         static async Task Bai2_Top3VipAward(List<Player> players)
         {
             Console.WriteLine("\n--- 2.1. TOP 3 NGƯỜI CHƠI VIP CẤP ĐỘ CAO NHẤT VÀ GOLD THƯỞNG DỰ KIẾN ---\n");
-            
+            Console.WriteLine("Hạng | Tên Người Chơi     | VIP Level | Level | Gold Hiện Tại | Gold Thưởng");
+
 
             var top3 = players.Where(p => p.VipLevel > 0)
                 .OrderByDescending(p => p.Level)
@@ -110,7 +111,9 @@ namespace Bai_Tap_Kiem_Tra
             foreach (var p in top3)
             {
                 Console.WriteLine(string.Format("{0,4} | {1,-20} | {2,9} | {3,5} | {4,14:N0} | {5,12:N0}",
-                    p.Rank, p.Name, p.VipLevel, p.Level, p.CurrentGold, p.AwardedGoldAmount));
+                
+
+                p.Rank, p.Name, p.VipLevel, p.Level, p.CurrentGold, p.AwardedGoldAmount));
             }
 
             await PushToFirebase("final_exam_bai2_top3_vip_awards", top3);
