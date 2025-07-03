@@ -65,7 +65,7 @@ namespace LAB12_FINAL
                 Console.WriteLine(string.Format("{0,-18}| {1,-10}| {2}", p.Name, p.IsActive, p.LastLogin));
             }
 
-            await PushToFirebase("final_exam_bai1_inactive_players", result);
+            await PushToFirebase("final_exam_bai1_inactive_players_method", result);
         }
 
         static async Task Bai1_2_LowLevelPlayers(List<Player> players)
