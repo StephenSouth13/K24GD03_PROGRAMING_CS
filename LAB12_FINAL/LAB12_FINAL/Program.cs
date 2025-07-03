@@ -50,7 +50,7 @@ namespace LAB12_FINAL
         static async Task Bai1_1_InactivePlayers(List<Player> players)
         {
             Console.WriteLine("\n--- 1.1. DANH SÁCH NGƯỜI CHƠI KHÔNG HOẠT ĐỘNG GẦN ĐÂY ---");
-            Console.WriteLine("Tên Người Chơi    | Hoạt Động  | Đăng Nhập Cuối");
+            Console.WriteLine("Tên Người Chơi    | Hoạt Động | Đăng Nhập Cuối");
 
             var result = players.Where(p => p.IsActive == false || (fixedNow - p.LastLogin).TotalDays > 5)
                 .Select(p => new
